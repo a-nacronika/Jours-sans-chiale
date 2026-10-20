@@ -3,109 +3,315 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jours sans chiale</title>
 
 <style>
-@font-face {
-  font-family: "Tritopani";
-  src: url("tritopani.ttf") format("truetype");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&display=swap');
+
+:root {
+  --ivory: #f5f0e5;
+  --lace: #fffefa;
+  --ink: #70464b;
+  --rose: #bd8588;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
+  min-height: 100%;
+}
+
+body {
   min-height: 100vh;
-  background: #f4eee0;
+  background: var(--ivory);
+  color: var(--ink);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-}
-
-.page {
-  position: relative;
-  width: min(100%, 768px);
-  line-height: 0;
-}
-
-.artwork {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Zona del contador real, dentro del marco de perlas */
-.counter {
-  position: absolute;
-  top: 43.1%;
-  left: 34.1%;
-  width: 31.8%;
-  height: 7.7%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-items: center;
-  gap: 2%;
-  padding: 1%;
-  background: #f4eddf;
+  padding: 15px;
+  overflow-x: hidden;
+}
+
+/* MARCO DE ENCAJE */
+
+.frame {
+  position: relative;
+  width: min(100%, 720px);
+  min-height: 94vh;
+  padding: 54px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: -1;
+  border: 2px solid white;
+  outline: 1px solid rgba(255,255,255,.8);
+  outline-offset: 5px;
+  background:
+    radial-gradient(circle at 50% 0,
+      transparent 0 8px, white 8.5px 10px, transparent 10.5px)
+      top / 24px 17px repeat-x,
+    radial-gradient(circle at 50% 100%,
+      transparent 0 8px, white 8.5px 10px, transparent 10.5px)
+      bottom / 24px 17px repeat-x,
+    radial-gradient(circle at 0 50%,
+      transparent 0 8px, white 8.5px 10px, transparent 10.5px)
+      left / 17px 24px repeat-y,
+    radial-gradient(circle at 100% 50%,
+      transparent 0 8px, white 8.5px 10px, transparent 10.5px)
+      right / 17px 24px repeat-y;
+  pointer-events: none;
+}
+
+.frame::after {
+  content: "✧";
+  position: absolute;
+  top: 17px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 24px;
+  text-shadow: 0 0 1px white;
+}
+
+/* TÍTULO */
+
+h1 {
+  margin: 0 0 14px;
+  font-family: "Tritopani", "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(30px, 7vw, 52px);
+  letter-spacing: -1.5px;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+/* CONTADOR */
+
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(7px, 3vw, 20px);
+  margin-bottom: 5px;
+  font-family: "Tritopani", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(54px, 15vw, 105px);
   line-height: 1;
+  color: var(--ink);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
 }
 
 .digit {
-  font-family: "Tritopani", Georgia, serif;
-  color: #956267;
-  font-size: clamp(24px, 7.5vw, 66px);
-  font-weight: normal;
-  line-height: 1;
+  min-width: .62em;
+  text-align: center;
 }
 
-@media (min-width: 769px) {
-  .digit {
-    font-size: 58px;
+/* OJOS LLOROSOS */
+
+.eyes {
+  width: min(100%, 420px);
+  margin-top: 18px;
+  overflow: visible;
+}
+
+.eye-line {
+  fill: none;
+  stroke: #6c4547;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lid {
+  fill: #d7a4a0;
+  stroke: #6c4547;
+  stroke-width: 2.5;
+}
+
+.iris {
+  fill: #795b60;
+}
+
+.pupil {
+  fill: #33272b;
+}
+
+.glint {
+  fill: #fffaf1;
+}
+
+/* LÁGRIMAS */
+
+.tear {
+  fill: #a8c5cc;
+  opacity: .9;
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: fall 2.8s ease-in infinite;
+}
+
+.tear.two {
+  animation-delay: 1.1s;
+}
+
+.tear.three {
+  animation-delay: 1.8s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-3px) scaleY(.7);
+    opacity: 0;
+  }
+  18% {
+    opacity: .9;
+  }
+  80% {
+    opacity: .8;
+  }
+  100% {
+    transform: translateY(48px) scaleY(1.25);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .frame {
+    min-height: 90vh;
+    padding: 45px 12px;
+  }
+
+  .eyes {
+    margin-top: 22px;
   }
 }
 </style>
 </head>
 
 <body>
-  <main class="page">
-    <img
-      class="artwork"
-      src="fond.png"
-      alt=""
-    >
+<main class="frame">
 
-    <div class="counter" aria-label="Días transcurridos">
-      <span class="digit" id="hundreds">0</span>
-      <span class="digit" id="tens">0</span>
-      <span class="digit" id="units">0</span>
-    </div>
-  </main>
+  <h1>jours sans chiale</h1>
+
+  <div class="counter" aria-label="Jours écoulés">
+    <span class="digit" id="d1">0</span>
+    <span class="digit" id="d2">0</span>
+    <span class="digit" id="d3">0</span>
+  </div>
+
+  <svg class="eyes" viewBox="0 0 420 190"
+       xmlns="http://www.w3.org/2000/svg"
+       role="img" aria-label="Deux yeux en larmes">
+
+    <defs>
+      <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ead0bd"/>
+        <stop offset="100%" stop-color="#d4a89b"/>
+      </linearGradient>
+      <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#8daeb9"/>
+        <stop offset="55%" stop-color="#e0eeee"/>
+        <stop offset="100%" stop-color="#9bbbc5"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Rostro insinuado -->
+    <path d="M24 80 Q75 25 151 65
+             Q180 78 207 68
+             Q250 25 320 56
+             Q370 69 396 82"
+          fill="none" stroke="#e0c8b6" stroke-width="19"
+          stroke-linecap="round" opacity=".7"/>
+
+    <!-- Ojo izquierdo -->
+    <path d="M35 86 Q90 29 169 83
+             Q105 131 35 86Z"
+          fill="url(#skin)"/>
+    <path class="lid"
+          d="M35 86 Q90 29 169 83
+             Q105 131 35 86Z"/>
+    <path d="M35 86 Q90 29 169 83"
+          class="eye-line"/>
+    <ellipse cx="103" cy="83" rx="25" ry="27" class="iris"/>
+    <ellipse cx="104" cy="83" rx="13" ry="19" class="pupil"/>
+    <ellipse cx="96" cy="74" rx="7" ry="9" class="glint"/>
+    <path d="M41 77 L29 65 M54 65 L46 51
+             M70 55 L65 41 M88 49 L87 35
+             M107 49 L111 36 M127 56 L135 44"
+          class="eye-line"/>
+
+    <!-- Ojo derecho -->
+    <path d="M251 83 Q324 29 386 86
+             Q318 131 251 83Z"
+          fill="url(#skin)"/>
+    <path class="lid"
+          d="M251 83 Q324 29 386 86
+             Q318 131 251 83Z"/>
+    <path d="M251 83 Q324 29 386 86"
+          class="eye-line"/>
+    <ellipse cx="320" cy="83" rx="25" ry="27" class="iris"/>
+    <ellipse cx="320" cy="83" rx="13" ry="19" class="pupil"/>
+    <ellipse cx="313" cy="74" rx="7" ry="9" class="glint"/>
+    <path d="M258 74 L248 60 M276 59 L271 44
+             M295 50 L294 36 M314 48 L316 34
+             M334 51 L341 37 M355 61 L365 47"
+          class="eye-line"/>
+
+    <!-- Lágrimas -->
+    <path class="tear" fill="url(#water)"
+          d="M82 111 Q78 121 82 127 Q87 132 90 126 Q92 121 82 111Z"/>
+    <path class="tear two" fill="url(#water)"
+          d="M132 112 Q128 122 132 128 Q137 133 140 127 Q142 122 132 112Z"/>
+    <path class="tear three" fill="url(#water)"
+          d="M300 112 Q296 122 300 128 Q305 133 308 127 Q310 122 300 112Z"/>
+    <path class="tear two" fill="url(#water)"
+          d="M350 111 Q346 121 350 127 Q355 132 358 126 Q360 121 350 111Z"/>
+
+    <!-- Pequeñas perlas -->
+    <g fill="#fffdf5" stroke="#e5d7c6" stroke-width="1">
+      <circle cx="21" cy="151" r="3"/>
+      <circle cx="42" cy="163" r="2.5"/>
+      <circle cx="65" cy="170" r="3"/>
+      <circle cx="356" cy="167" r="3"/>
+      <circle cx="378" cy="157" r="2.5"/>
+      <circle cx="399" cy="146" r="3"/>
+    </g>
+  </svg>
+
+</main>
 
 <script>
-  // Cambiá esta fecha por el día desde el que querés contar.
-  const dateDepart = "2026-01-01";
+  // Cambiá la fecha por el día desde el que querés contar.
+  const dateDepart = "2026-10-13";
 
   function updateCounter() {
-    const debut = new Date(dateDepart + "T00:00:00");
-    const maintenant = new Date();
+    const start = new Date(dateDepart + "T00:00:00");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    debut.setHours(0, 0, 0, 0);
-    maintenant.setHours(0, 0, 0, 0);
-
-    const jours = Math.max(
+    const days = Math.max(
       0,
-      Math.floor((maintenant - debut) / 86400000)
+      Math.floor((today - start) / 86400000)
     );
 
-    const chiffres = String(jours).slice(-3).padStart(3, "0");
+    const value = String(days).padStart(3, "0");
 
-    document.getElementById("hundreds").textContent = chiffres[0];
-    document.getElementById("tens").textContent = chiffres[1];
-    document.getElementById("units").textContent = chiffres[2];
+    document.getElementById("d1").textContent = value[0];
+    document.getElementById("d2").textContent = value[1];
+    document.getElementById("d3").textContent = value[2];
   }
 
   updateCounter();
