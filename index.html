@@ -1,352 +1,116 @@
-
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jours sans chiale ♡</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jours sans chiale</title>
 
 <style>
-:root {
-  --fond: #fffdf9;
-  --papel: #faf5f1;
-  --tinta: #55414a;
-  --rosa: #d7a9b7;
-  --encaje: #fffefa;
+@font-face {
+  font-family: "Tritopani";
+  src: url("tritopani.ttf") format("truetype");
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 22px;
-  background:
-    radial-gradient(ellipse at 50% 15%, #ffffff, transparent 65%),
-    #f4e9ed;
-  color: var(--tinta);
+  background: #f4eee0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.poster {
+.page {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  width: min(100%, 590px);
-  min-height: 720px;
-  padding: 44px 22px 32px;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at center, #fffefa 35%, #fdf6f5 100%);
-  border: 1px solid #e7d5dc;
-  box-shadow: 0 12px 45px #9d7b8a22;
+  width: min(100%, 768px);
+  line-height: 0;
 }
 
-/* Encaje ornamental dibujado con CSS */
-.lace {
-  position: absolute;
-  z-index: -1;
-  left: 9px;
-  right: 9px;
-  height: 45px;
-  opacity: .9;
-  background:
-    radial-gradient(circle at 10px 24px,
-      transparent 9px, #dfc5d0 9.5px, transparent 11px)
-      0 0 / 20px 35px repeat-x,
-    radial-gradient(circle at 10px 24px,
-      #fffefa 0 6px, #dfc5d0 6.5px, transparent 8px)
-      10px 8px / 20px 35px repeat-x;
+.artwork {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.lace.top { top: 5px; }
-.lace.bottom { bottom: 5px; transform: rotate(180deg); }
-
-.side-lace {
-  position: absolute;
-  z-index: -1;
-  top: 55px;
-  bottom: 55px;
-  width: 24px;
-  opacity: .65;
-  background:
-    radial-gradient(circle at center,
-      transparent 5px, #e1c8d2 5.5px,
-      transparent 7px) 0 0 / 24px 22px repeat-y;
-}
-.side-lace.left { left: 5px; }
-.side-lace.right { right: 5px; }
-
-.content {
-  position: relative;
-  z-index: 2;
-}
-
-.tiny {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.ornament {
-  margin: 17px 0 4px;
-  color: #c59aaa;
-  font-size: 28px;
-}
-
-h1 {
-  margin: 5px 0 0;
-  font-family: 'Caveat', cursive;
-  font-size: clamp(53px, 12vw, 84px);
-  font-weight: 500;
-  line-height: .88;
-  transform: rotate(-3deg);
-}
-
-.subtitle {
-  margin: 17px 0 15px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
-  font-style: italic;
-}
-
-/* Halo decorativo */
-.halo {
-  position: relative;
-  width: 155px;
-  height: 155px;
-  margin: 15px auto 18px;
-  border: 1px solid #d8b7c5;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(
-      from 0deg,
-      #d9b8c5 0deg 1deg,
-      transparent 1deg 12deg
-    );
-  box-shadow:
-    0 0 0 7px #fffefa,
-    0 0 0 8px #e4cbd5,
-    0 0 25px #d6b2c244;
-}
-
-.halo::before {
-  content: "✧  ❀  ✧";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #9e7185;
-  font-size: 30px;
-  background: radial-gradient(circle, #fffefa 0 47%, transparent 48%);
-}
-
-.counter-label {
-  margin: 8px 0;
-  font-family: 'Caveat', cursive;
-  font-size: 29px;
-}
-
+/* Zona del contador real, dentro del marco de perlas */
 .counter {
-  position: relative;
-  display: inline-flex;
-  gap: 7px;
-  margin: 12px auto 5px;
-  padding: 12px;
-  border: 1px solid #d9bdc9;
-  outline: 1px solid #eadbe1;
-  outline-offset: 4px;
-  background: #fffaf9;
-  box-shadow: 0 4px 15px #9d7b8a13;
+  position: absolute;
+  top: 43.1%;
+  left: 34.1%;
+  width: 31.8%;
+  height: 7.7%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 2%;
+  padding: 1%;
+  background: #f4eddf;
+  line-height: 1;
 }
 
 .digit {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: clamp(55px, 17vw, 86px);
-  height: clamp(76px, 21vw, 110px);
-  overflow: visible;
-  background: #fcf3f5;
-  border: 1px solid #ecd8df;
-  color: #765362;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(51px, 14vw, 78px);
-  font-weight: 500;
+  font-family: "Tritopani", Georgia, serif;
+  color: #956267;
+  font-size: clamp(24px, 7.5vw, 66px);
+  font-weight: normal;
+  line-height: 1;
 }
 
-.digit::after {
-  content: "✧";
-  position: absolute;
-  top: 2px;
-  right: 4px;
-  color: #d7b0bf;
-  font-size: 10px;
-}
-
-/* Las lágrimas atraviesan la página */
-.tears {
-  position: absolute;
-  z-index: 4;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.tear {
-  position: absolute;
-  top: -35px;
-  width: var(--size, 10px);
-  height: calc(var(--size, 10px) * 1.65);
-  border-radius: 65% 35% 60% 40%;
-  background: linear-gradient(
-    125deg,
-    #ffffffee 5%,
-    #e4d9e7cc 36%,
-    #b5a2c3bb 75%,
-    #ffffffcc 95%
-  );
-  border: 1px solid #c4b3caaa;
-  box-shadow: 0 1px 5px #a48baf33;
-  animation: fall var(--speed, 4s) linear infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-@keyframes fall {
-  0% {
-    top: -35px;
-    opacity: 0;
-    transform: translateX(0) rotate(12deg);
+@media (min-width: 769px) {
+  .digit {
+    font-size: 58px;
   }
-  12% { opacity: .85; }
-  80% { opacity: .8; }
-  100% {
-    top: 105%;
-    opacity: 0;
-    transform: translateX(var(--drift, 12px)) rotate(70deg);
-  }
-}
-
-.phrase {
-  margin-top: 26px;
-  font-family: 'Caveat', cursive;
-  font-size: 29px;
-  transform: rotate(2deg);
-}
-
-.footer {
-  margin-top: 24px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-.substack {
-  display: inline-block;
-  margin-top: 12px;
-  color: #886174;
-  font-family: 'Caveat', cursive;
-  font-size: 23px;
-  text-underline-offset: 4px;
-}
-
-@media (max-width: 420px) {
-  .poster { min-height: 680px; padding-inline: 17px; }
-  .halo { width: 130px; height: 130px; }
 }
 </style>
 </head>
 
 <body>
-<main class="poster">
-  <div class="lace top"></div>
-  <div class="lace bottom"></div>
-  <div class="side-lace left"></div>
-  <div class="side-lace right"></div>
-  <div class="tears" id="tears"></div>
+  <main class="page">
+    <img
+      class="artwork"
+      src="fond.png"
+      alt=""
+    >
 
-  <div class="content">
-    <div class="tiny">petit sanctuaire des émotions</div>
-    <div class="ornament">༺ ♡ ༻</div>
-
-    <h1>jours sans<br>chiale</h1>
-
-    <div class="subtitle">que le ciel me vienne en aide</div>
-
-    <div class="halo" aria-hidden="true"></div>
-
-    <div class="counter-label">miraculeusement...</div>
-
-    <div class="counter" aria-label="Nombre de jours sans chiale">
-      <span class="digit">0</span>
-      <span class="digit">0</span>
-      <span class="digit">0</span>
+    <div class="counter" aria-label="Días transcurridos">
+      <span class="digit" id="hundreds">0</span>
+      <span class="digit" id="tens">0</span>
+      <span class="digit" id="units">0</span>
     </div>
-
-    <div class="counter-label">jours sans chiale</div>
-
-    <div class="ornament">✧  ❀  ✧</div>
-
-    <div class="phrase">sainte patience, priez pour moi.</div>
-
-    <div class="footer">UN JOUR À LA FOIS · AMEN</div>
-
-    <!-- Remplacer par l'adresse réelle de ton Substack -->
-    <a class="substack"
-       href="https://TONNOM.substack.com/"
-       target="_blank" rel="noopener">
-      mes confessions ♡
-    </a>
-  </div>
-</main>
+  </main>
 
 <script>
-// DATE DE DÉPART : format AAAA-MM-JJ.
-// Le jour choisi correspond au compteur 000.
-const dateDepart = "2026-01-01";
+  // Cambiá esta fecha por el día desde el que querés contar.
+  const dateDepart = "2026-01-01";
 
-function joursEcoules() {
-  const [a, m, j] = dateDepart.split("-").map(Number);
-  const debut = Date.UTC(a, m - 1, j);
-  const maintenant = new Date();
-  const aujourdhui = Date.UTC(
-    maintenant.getFullYear(),
-    maintenant.getMonth(),
-    maintenant.getDate()
-  );
-  return Math.max(0, Math.floor(
-    (aujourdhui - debut) / 86400000
-  ));
-}
+  function updateCounter() {
+    const debut = new Date(dateDepart + "T00:00:00");
+    const maintenant = new Date();
 
-function actualiser() {
-  const valeur = String(joursEcoules()).padStart(3, "0");
-  document.querySelectorAll(".digit").forEach((el, i) => {
-    el.textContent = valeur[i] || "0";
-  });
-}
+    debut.setHours(0, 0, 0, 0);
+    maintenant.setHours(0, 0, 0, 0);
 
-actualiser();
-setInterval(actualiser, 60000);
+    const jours = Math.max(
+      0,
+      Math.floor((maintenant - debut) / 86400000)
+    );
 
-// Crée des larmes de tailles et de vitesses différentes.
-const pluie = document.getElementById("tears");
+    const chiffres = String(jours).slice(-3).padStart(3, "0");
 
-for (let i = 0; i < 30; i++) {
-  const larme = document.createElement("span");
-  larme.className = "tear";
-  larme.style.left = Math.random() * 100 + "%";
-  larme.style.setProperty("--size", (5 + Math.random() * 9) + "px");
-  larme.style.setProperty("--speed", (3 + Math.random() * 5) + "s");
-  larme.style.setProperty("--delay", (-Math.random() * 8) + "s");
-  larme.style.setProperty("--drift", (-18 + Math.random() * 36) + "px");
-  pluie.appendChild(larme);
-}
+    document.getElementById("hundreds").textContent = chiffres[0];
+    document.getElementById("tens").textContent = chiffres[1];
+    document.getElementById("units").textContent = chiffres[2];
+  }
+
+  updateCounter();
+  setInterval(updateCounter, 60000);
 </script>
 </body>
 </html>
+```
